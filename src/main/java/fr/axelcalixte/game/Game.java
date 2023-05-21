@@ -93,10 +93,10 @@ public class Game {
         this.getAdventurers().get(j).playTurn();
       }
     }
-    displayResults();
+    writeResultsToFile();
   }
 
-  private void displayResults() {
+  private void writeResultsToFile() {
     var outputFile = Path.of("src/main/resources/my-output.txt");
     if (!Files.exists(outputFile)) {
       try {
