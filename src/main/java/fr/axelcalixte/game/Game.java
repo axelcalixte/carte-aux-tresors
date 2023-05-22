@@ -34,14 +34,15 @@ public class Game {
         .filter(line -> line.startsWith("A"))
         .map(
             line -> {
-              Scanner s = new Scanner(line).useDelimiter(" - ").skip("A");
-              return Adventurer.builder()
-                  .name(s.next())
-                  .position(new Position(s.nextInt(), s.nextInt()))
-                  .orientation(Orientation.chooseOrientation(s.next()))
-                  .moves(new LinkedList<>(s.next().chars().mapToObj(e -> (char) e).toList()))
-                  .map(this.map)
-                  .build();
+              try (var s = new Scanner(line).useDelimiter(" - ").skip("A")) {
+                return Adventurer.builder()
+                    .name(s.next())
+                    .position(new Position(s.nextInt(), s.nextInt()))
+                    .orientation(Orientation.chooseOrientation(s.next()))
+                    .moves(new LinkedList<>(s.next().chars().mapToObj(e -> (char) e).toList()))
+                    .map(this.map)
+                    .build();
+              }
             })
         .toList();
   }
@@ -64,8 +65,9 @@ public class Game {
         .filter(line -> line.startsWith("M"))
         .map(
             line -> {
-              Scanner s = new Scanner(line).useDelimiter(" - ").skip("M");
-              return new Position(s.nextInt(), s.nextInt());
+              try (Scanner s = new Scanner(line).useDelimiter(" - ").skip("M")) {
+                return new Position(s.nextInt(), s.nextInt());
+              }
             })
         .collect(Collectors.toSet());
   }
