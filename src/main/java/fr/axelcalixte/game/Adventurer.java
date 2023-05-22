@@ -18,41 +18,45 @@ public class Adventurer {
     boolean canPickUpTreasure = false;
     switch (this.orientation) {
       case NORTH -> {
-        if (this.map.getMountains().stream()
-            .noneMatch(
-                mountain ->
-                    (mountain.getY() == this.position.getY() - 1)
-                        && (mountain.getX() == this.position.getX()))) {
+        if (this.position.getY() - 1 >= 0
+            && this.map.getMountains().stream()
+                .noneMatch(
+                    mountain ->
+                        (mountain.getY() == this.position.getY() - 1)
+                            && (mountain.getX() == this.position.getX()))) {
           this.position.setY(this.position.getY() - 1);
           canPickUpTreasure = true;
         }
       }
       case SOUTH -> {
-        if (this.map.getMountains().stream()
-            .noneMatch(
-                mountain ->
-                    (mountain.getY() == this.position.getY() + 1)
-                        && (mountain.getX() == this.position.getX()))) {
+        if (this.position.getY() + 1 < this.getMap().getBoundaries().getY()
+            && this.map.getMountains().stream()
+                .noneMatch(
+                    mountain ->
+                        (mountain.getY() == this.position.getY() + 1)
+                            && (mountain.getX() == this.position.getX()))) {
           this.position.setY(this.position.getY() + 1);
           canPickUpTreasure = true;
         }
       }
       case EAST -> {
-        if (this.map.getMountains().stream()
-            .noneMatch(
-                mountain ->
-                    (mountain.getX() == this.position.getX() + 1)
-                        && (mountain.getY() == this.position.getY()))) {
+        if (this.position.getX() + 1 < this.getMap().getBoundaries().getX()
+            && this.map.getMountains().stream()
+                .noneMatch(
+                    mountain ->
+                        (mountain.getX() == this.position.getX() + 1)
+                            && (mountain.getY() == this.position.getY()))) {
           this.position.setX(this.position.getX() + 1);
           canPickUpTreasure = true;
         }
       }
       case WEST -> {
-        if (this.map.getMountains().stream()
-            .noneMatch(
-                mountain ->
-                    (mountain.getX() == this.position.getX() - 1)
-                        && (mountain.getY() == this.position.getY()))) {
+        if (this.position.getX() - 1 >= 0
+            && this.map.getMountains().stream()
+                .noneMatch(
+                    mountain ->
+                        (mountain.getX() == this.position.getX() - 1)
+                            && (mountain.getY() == this.position.getY()))) {
           this.position.setX(this.position.getX() - 1);
           canPickUpTreasure = true;
         }

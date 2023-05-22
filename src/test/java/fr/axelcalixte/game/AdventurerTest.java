@@ -113,6 +113,46 @@ class AdventurerTest {
   }
 
   @Test
+  void shouldNotGoOutOfBoundNorth() {
+    var expectedPosition = new Position(0, 0);
+    Adventurer Lara = game.getAdventurers().get(0);
+    Lara.setPosition(new Position(0, 0));
+    Lara.setOrientation(Orientation.NORTH);
+    Lara.walk();
+    Assertions.assertEquals(expectedPosition, Lara.getPosition());
+  }
+
+  @Test
+  void shouldNotGoOutOfBoundWest() {
+    var expectedPosition = new Position(0, 0);
+    Adventurer Lara = game.getAdventurers().get(0);
+    Lara.setPosition(new Position(0, 0));
+    Lara.setOrientation(Orientation.WEST);
+    Lara.walk();
+    Assertions.assertEquals(expectedPosition, Lara.getPosition());
+  }
+
+  @Test
+  void shouldNotGoOutOfBoundSouth() {
+    var expectedPosition = new Position(2, 3);
+    Adventurer Lara = game.getAdventurers().get(0);
+    Lara.setPosition(new Position(2, 3));
+    Lara.setOrientation(Orientation.SOUTH);
+    Lara.walk();
+    Assertions.assertEquals(expectedPosition, Lara.getPosition());
+  }
+
+  @Test
+  void shouldNotGoOutOfBoundEast() {
+    var expectedPosition = new Position(2, 3);
+    Adventurer Lara = game.getAdventurers().get(0);
+    Lara.setPosition(new Position(2, 3));
+    Lara.setOrientation(Orientation.EAST);
+    Lara.walk();
+    Assertions.assertEquals(expectedPosition, Lara.getPosition());
+  }
+
+  @Test
   void shouldCollectTreasure() {
     var testMap = this.game.getMap();
     var Lara = game.getAdventurers().get(0);
